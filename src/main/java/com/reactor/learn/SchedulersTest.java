@@ -18,12 +18,12 @@ public class SchedulersTest {
                         , 8) //maxConcurrency 8
                 .subscribe(System.out::println);
 
-//        Mono.fromCallable( () -> System.currentTimeMillis() )
-//                .repeat()
-//                .parallel(8) //parallelism
-//                .runOn(Schedulers.parallel())
-//                .doOnNext( d -> System.out.println("I'm on thread "+d+Thread.currentThread()) )
-//                .subscribe();
+        Mono.fromCallable( () -> System.currentTimeMillis() )
+                .repeat()
+                .parallel(8) //parallelism
+                .runOn(Schedulers.parallel())
+                .doOnNext( d -> System.out.println("I'm on thread "+d+Thread.currentThread()) )
+                .subscribe();
 
         System.out.println(Runtime.getRuntime().availableProcessors());
     }
