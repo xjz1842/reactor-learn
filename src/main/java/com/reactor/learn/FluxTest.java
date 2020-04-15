@@ -11,20 +11,20 @@ public class FluxTest {
 
     public static void main(String[] args) {
 
-        Flux.fromIterable(getSomeLongList())
-                .mergeWith(Flux.interval(Duration.ofMillis(100)))
-                .map(d -> d * 2)
-                .take(3)
-                .subscribe(System.out::println);
+//        Flux.fromIterable(getSomeLongList())
+//                .map(d -> d * 2)
+//                .take(3)
+//                .subscribe(System.out::println);
 
         Flux.create(sink -> {
-                    sink.next("3");
+                    for (int i = 0; i < 10; i++)
+                        sink.next(i);
                 },
                 // Overflow (backpressure) handling, default is BUFFER
                 FluxSink.OverflowStrategy.BUFFER)
-                .timeout(Duration.ofMillis(300))
-                .doOnComplete(() -> System.out.println("completed!"))
+//                .timeout(Duration.ofMillis(300))
                 .subscribe(System.out::println);
+
     }
 
     private static List<Long> getSomeLongList() {

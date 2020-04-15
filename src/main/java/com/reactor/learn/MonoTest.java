@@ -1,8 +1,6 @@
 package com.reactor.learn;
 
-
 import reactor.core.publisher.Mono;
-
 
 public class MonoTest {
 
